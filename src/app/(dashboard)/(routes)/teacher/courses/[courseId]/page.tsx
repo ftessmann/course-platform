@@ -4,6 +4,7 @@ import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { LayoutDashboard } from "lucide-react";
 import { TitleForm } from "./_components/title-form";
+import { DescriptionForm } from "./_components/description-form";
 
 const CourseIdPage = async ({
     params
@@ -40,6 +41,14 @@ const CourseIdPage = async ({
 
     const completionText = `(${completedFields}/${totalFields})`
 
+    const transformedCourse = {
+        ...course,
+        description: course.description ?? '',
+        imageUrl: course.imageUrl ?? '',
+        price: course.price ?? 0,
+        categoryId: course.categoryId ?? ''
+    };
+
     return (
         <div className='p-6'>
             <div className='flex items-center justify-between'>
@@ -70,6 +79,11 @@ const CourseIdPage = async ({
 
                     <TitleForm 
                         initialData={course}
+                        courseId={course.id}
+                    />
+
+                    <DescriptionForm 
+                        initialData={transformedCourse}
                         courseId={course.id}
                     />
 
