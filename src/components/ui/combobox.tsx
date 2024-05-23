@@ -38,7 +38,7 @@ export const Combobox = ({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[200px] justify-between"
+          className="w-full justify-between"
         >
           {value
             ? options.find((option) => option.value === value)?.label
@@ -53,6 +53,7 @@ export const Combobox = ({
           <CommandGroup>
             {options.map((option) => (
               <CommandItem
+                className='data-[disabled]:pointer-events-none'
                 key={option.value}
                 value={option.value}
                 onSelect={(currentValue) => {
