@@ -44,7 +44,7 @@ export const ChapterForm = ({
 
     const [isUpdating, setIsUpdating] = useState(false);
 
-    const toggleCreating = () => {1
+    const toggleCreating = () => {
         setIsCreating((current) => !current)
     };
 
@@ -84,6 +84,10 @@ export const ChapterForm = ({
         } finally {
             setIsUpdating(false);
         }
+    };
+
+    const onEdit = (id: string) => {
+        router.push(`/teacher/courses/${courseId}/chapters/${id}`);
     }
 
     return (
@@ -155,7 +159,7 @@ export const ChapterForm = ({
                 )}>
                     {!initialData.chapter.length && 'No Chapters'}
                     <ChaptersList 
-                        onEdit={() => {}}
+                        onEdit={onEdit}
                         onReorder={onReorder}
                         items={initialData.chapter || []}
                     />
